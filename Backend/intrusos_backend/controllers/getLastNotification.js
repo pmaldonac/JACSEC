@@ -2,7 +2,8 @@ const Notification = require("../models/notificationModel")
 
 exports.getLastNotificationController = async (req,res) =>{
     try{
-        var lastNotification = await Notification.findOne({}).sort({fecha: -1})
+        var lastNotification = await Notification.findOne({}).sort({date: -1})
+
         res.status(200).json(lastNotification)
     }catch(e){
         console.error(e)

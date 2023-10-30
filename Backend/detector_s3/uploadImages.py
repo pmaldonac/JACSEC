@@ -5,6 +5,7 @@ import boto3
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+import uuid
 load_dotenv()
 
 observer = Observer()
@@ -17,11 +18,13 @@ class ImageHandler(FileSystemEventHandler):
     def on_created(self, event):
         if not event.is_directory:
             new_image_path = event.src_path
+            
+            myuuid = uuid.uuid4()
 
             # Obtiene la fecha y hora actual
             current_datetime = datetime.now().strftime("%Y%m%d%H%M%S")
-            camera_info = "3"  # Reemplazar con  el número de cámara
-            new_image_name = f"ICam_{camera_info}_Date_{current_datetime}.png"
+            camera_info = "2"  # Reemplazar con  el número de cámara
+            new_image_name = f"ICam_{camera_info}_Date_{current_datetime}_{myuuid}.png"
             s3.upload_file(new_image_path, os.environ.get("AWS_BUCKET_NAME"), new_image_name) #Carga imagen
             print(f"Imagen cargada con éxito {new_image_name}")
             os.remove(new_image_path)

@@ -16,13 +16,13 @@ exports.createNotification = async (req, res) =>{
 
         console.log(date)
         const notifications = new Notification({
-            tipo: imagen.substring(34,35) == "I" ? "Intruso" : "Patente",
-            gravedad: "",
-            imagen: imagen,
+            alert_type: imagen.substring(34,35) == "I" ? "Intruso" : "Patente",
+            severity: "",
+            image_url: imagen,
             published: false,
-            descripcion: "",
-            fecha: date,
-            camara:  imagen.substring(39,40)
+            description: "",
+            date: date,
+            camera:  imagen.substring(39,40)
         });
         await notifications.save()
         res.status(200).send({ message: "Notificación creada con éxito!" });

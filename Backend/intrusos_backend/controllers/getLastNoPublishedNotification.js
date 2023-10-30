@@ -1,0 +1,11 @@
+const Notification = require("../models/notificationModel")
+
+exports.getLastNoPublishedNotificationController = async (req,res) =>{
+    try{
+        var lastNotification = await Notification.findOne({published:false}).sort({date: -1})
+        res.status(200).json(lastNotification)
+    }catch(e){
+        console.error(e)
+        res.status(400).json({"message":"Hubo un error al obtener la última notificación-"})
+    }
+}

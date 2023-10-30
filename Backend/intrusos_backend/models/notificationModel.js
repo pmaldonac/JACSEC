@@ -1,14 +1,15 @@
 const mongoose = require("mongoose")
 
 const notificationSchema = mongoose.Schema({
-    tipo: String,
-    gravedad: String,
-    imagen: String,
+    id_event: String,
+    alert_type: String,
+    severity: String,
+    image_url: String,
     published: Boolean,
-    descripcion: String,
-    camara: String,
-    fecha: Date
+    description: String,
+    camera: String,
+    date: Date
 }
 )
 
-module.exports = mongoose.model('notification', notificationSchema);
+module.exports = mongoose.model('notifications', notificationSchema);
