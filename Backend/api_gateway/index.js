@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require("cors");
 const router = require("./routes/index")
+const bodyParser = require('body-parser')
 
 var corsOptions = {
     origin: `http://localhost:9090`,
@@ -11,6 +12,7 @@ var corsOptions = {
   };
 
 app.use(cors());
+app.use(bodyParser())
 app.use("/", router)
 
 app.listen(9090, () => {

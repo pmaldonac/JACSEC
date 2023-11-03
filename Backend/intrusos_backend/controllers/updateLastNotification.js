@@ -2,13 +2,14 @@ const Notification = require("../models/notificationModel")
 
 exports.updateLastNotificationController = async (req,res) =>{
     try{
-        const lastNotification = await Notification.findOne({}).sort({fecha: -1})
+        const lastNotification = await Notification.findOne({}).sort({date: -1})
+        console.log(lastNotification)
         if(!lastNotification){
             res.status(404).json({"message": "No se encontró la última notificación."})
         }else{
             id = lastNotification.id
-            lastNotification.descripcion = req.body.descripcion
-            lastNotification.gravedad = req.body.gravedad
+            lastNotification.description = req.body.descripcion
+            lastNotification.severity = req.body.gravedad
             const newNotification = await Notification.findByIdAndUpdate(id,lastNotification )
             res.status(200).json(lastNotification)
         }

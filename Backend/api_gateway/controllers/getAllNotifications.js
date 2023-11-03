@@ -2,7 +2,7 @@ const axios = require("axios")
 
 function convertDateToString(dateString) {
     const date = new Date(dateString); // Crear un objeto Date a partir de la cadena de tiempo
-    console.log(date)
+
 
     const dia = date.getDate().toString().padStart(2, '0');
     const mes = (date.getMonth() + 1).toString().padStart(2, '0');

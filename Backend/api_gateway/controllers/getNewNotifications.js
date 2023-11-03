@@ -7,7 +7,7 @@ exports.getNewNotificationsController = async(req,res) =>{
             const updatePublishedState = await axios.post("http://localhost:8080/updatePublishedState",{"id_event" : data.id_event})
             res.json(data)
         }else{
-            res.status(400).json({"message": "No existen notificaciones nuevas"})
+            res.status(204).json({'mesagge': 'No hay notificaciones nuevas que mostrar.'})
         }
         
     }catch(e){
